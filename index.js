@@ -2,7 +2,7 @@
 'use strict';
 
 /**
- * Barrels: Simple fixtures for Sails.js
+ * Fixted: Simple fixtures for Sails.js
  */
 
 /**
@@ -13,15 +13,15 @@ var path = require('path');
 var async = require('async');
 var _ = require('lodash');
 
-module.exports = Barrels;
+module.exports = Fixted;
 
 /**
- * Barrels module
+ * Fixted module
  * @param {string} sourceFolder defaults to <project root>/test/fixtures
  */
-function Barrels(sourceFolder) {
-  if (!(this instanceof Barrels))
-    return new Barrels(sourceFolder);
+function Fixted(sourceFolder) {
+  if (!(this instanceof Fixted))
+    return new Fixted(sourceFolder);
 
   // Fixture objects loaded from the JSON files
   this.data = {};
@@ -51,7 +51,7 @@ function Barrels(sourceFolder) {
  * Add associations
  * @param {function} done callback
  */
-Barrels.prototype.associate = function(collections, done) {
+Fixted.prototype.associate = function(collections, done) {
   if (!_.isArray(collections)) {
     done = collections;
     collections = this.modelNames;
@@ -110,7 +110,7 @@ Barrels.prototype.associate = function(collections, done) {
  * @param {function} done callback
  * @param {boolean} autoAssociations automatically associate based on the order in the fixture files
  */
-Barrels.prototype.populate = function(collections, done, autoAssociations) {
+Fixted.prototype.populate = function(collections, done, autoAssociations) {
   var preserveLoadOrder = true;
   if (!_.isArray(collections)) {
     autoAssociations = done;

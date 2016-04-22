@@ -1,4 +1,5 @@
 # Simple DB Fixtures for Sails.js with Associations Support
+Fixted is a fork of Barrels, by Ruslan Bredikhin. 
 
 
 ## Installation
@@ -11,10 +12,10 @@ Drop your fixtures in `test/fixtures` as JSON files (or CommonJS modules) named 
 
 Once your [Sails.js](http://sailsjs.org/) server is started:
 
-    var Barrels = require('barrels');
-    var barrels = new Barrels();
-    var fixtures = barrels.data;
-    barrels.populate(function(err) {
+    var Fixted = require('fixted');
+    var fixted = new Fixted();
+    var fixtures = fixted.data;
+    fixted.populate(function(err) {
       ...
     });
 
@@ -31,7 +32,7 @@ Pass to the constructor the path to the folder containing your fixtures
 `Populate` also accepts an array of names of collections to populate as
 the first (optional) argument, for example:
 
-    barrels.populate(['products'], function(err) {
+    fixted.populate(['products'], function(err) {
       // Only products will be populated
       ...
     });
@@ -57,7 +58,7 @@ authentication, and every `Passport` has `User` as a required association. You'd
 write something like this:
 
 ```javascript
-barrels.populate(['user', 'passport'], function(err) {
+fixted.populate(['user', 'passport'], function(err) {
   if (err)
     return done(err); // Higher level callback
 
