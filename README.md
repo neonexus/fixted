@@ -1,12 +1,9 @@
 # Simple DB Fixtures for Sails.js with Associations Support
 
-[![Build Status](https://travis-ci.org/bredikhin/barrels.png?branch=master)](https://travis-ci.org/bredikhin/barrels)
-[![Dependency Status](https://gemnasium.com/bredikhin/barrels.png)](https://gemnasium.com/bredikhin/barrels)
-
 
 ## Installation
 
-`$ npm i --save-dev barrels`
+`npm i --save-dev fixted`
 
 ## Usage
 
@@ -43,7 +40,7 @@ the first (optional) argument, for example:
 
 Use the number of position (starting from one) of an entry in the JSON fixture
 as a reference to associate models (see
-https://github.com/bredikhin/barrels/blob/master/test/fixtures/products.json
+https://github.com/neonexus/fixted/blob/master/test/fixtures/products.json
 for example). This feature can be disabled by passing `false` as the last
 parameter to `populate`.
 
@@ -77,5 +74,3 @@ barrels.populate(['user', 'passport'], function(err) {
 ## License
 
 [The MIT License](http://opensource.org/licenses/MIT)
-
-Copyright (c) 2013-2015 [Ruslan Bredikhin](http://ruslanbredikhin.com/)
