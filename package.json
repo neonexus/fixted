@@ -1,5 +1,5 @@
 {
-  "name": "barrels",
+  "name": "fixted",
   "version": "1.6.5",
   "description": "Simple DB Fixtures for Sails.js with associations support",
   "dependencies": {
@@ -19,7 +19,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/bredikhin/barrels.git"
+    "url": "git://github.com/neonexus/fixted.git"
   },
   "author": "Ruslan Bredikhin",
   "contributors": [
