@@ -74,7 +74,7 @@ Barrels.prototype.associate = function(collections, done) {
 
           // Pick associations only
           item = _.pick(item, Object.keys(that.associations[modelName]));
-          async.each(Object.keys(item), function(attr, nextAttr) {
+          async.eachSeries(Object.keys(item), function(attr, nextAttr) {
             var association = that.associations[modelName][attr];
             // Required associations should have beed added earlier
             if (association.required)
@@ -146,7 +146,7 @@ Barrels.prototype.populate = function(collections, done, autoAssociations) {
         // Insert all the fixture items
         that.idMap[modelName] = [];
         var fixtureObjects = _.cloneDeep(that.data[modelName]);
-        async.each(fixtureObjects, function(item, nextItem) {
+        async.eachSeries(fixtureObjects, function(item, nextItem) {
           // Item position in the file
           var itemIndex = fixtureObjects.indexOf(item);
 
