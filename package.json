@@ -1,11 +1,11 @@
 {
   "name": "fixted",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "Simple DB Fixtures for Sails.js with associations support. Based on Barrels, by Ruslan Bredikhin",
   "keywords": [
-	  "sails",
-	  "fixtures",
-	  "testing"
+    "sails",
+    "fixtures",
+    "testing"
   ],
   "dependencies": {
     "async": "^1.5.0",
