@@ -1,0 +1,37 @@
+{
+    "dependencies": {
+        "sails-memory": {
+            "dev": true,
+            "version": "0.10.7",
+            "from": "sails-memory@0.10.7",
+            "dependencies": {
+                "lodash": {
+                    "version": "4.17.15",
+                    "from": "lodash@<4.17.15"
+                }
+            }
+        },
+        "waterline-criteria": {
+            "dev": true,
+            "version": "1.0.1",
+            "from": "waterline-cursor@1.0.1",
+            "dependencies": {
+                "lodash": {
+                    "version": "4.17.15",
+                    "from": "lodash@<4.17.15"
+                }
+            }
+        },
+        "waterline-cursor": {
+            "dev": true,
+            "version": "0.0.6",
+            "from": "waterline-cursor@0.0.6",
+            "dependencies": {
+                "lodash": {
+                    "version": "4.17.15",
+                    "from": "lodash@<4.17.15"
+                }
+            }
+        }
+    }
+}

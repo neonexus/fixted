@@ -3,10 +3,17 @@
  */
 
 module.exports = {
-  attributes: {
-    products: {
-      collection: 'products',
-      via: 'category'
+    attributes: {
+        id: {
+            type: 'number',
+            autoIncrement: true
+        },
+        name: {
+            type: 'string'
+        },
+        products: {
+            collection: 'products',
+            via: 'category'
+        }
     }
-  }
 };

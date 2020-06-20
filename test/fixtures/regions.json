@@ -1,11 +1,11 @@
 [
-  {
-    "name": "midwest"
-  },
-  {
-    "name": "southwest"
-  },
-  {
-    "name": "pacific"
-  }
+    {
+        "name": "midwest"
+    },
+    {
+        "name": "southwest"
+    },
+    {
+        "name": "pacific"
+    }
 ]

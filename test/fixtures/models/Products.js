@@ -2,30 +2,40 @@
  * Products
  */
 
+const { v4: uuidv4 } = require('uuid');
+
 module.exports = {
-  attributes: {
-    customId: {
-      type: 'integer',
-      autoIncrement: true,
-      primaryKey: true
+    primaryKey: 'customId',
+
+    attributes: {
+        customId: {
+            type: 'string'
+        },
+        name: {
+            type: 'string',
+            required: true
+        },
+        category: {
+            model: 'categories'
+        },
+        tags: {
+            collection: 'tags',
+            via: 'products',
+            dominant: true
+        },
+        seller: {
+            model: 'sellers',
+            required: true
+        },
+        regions: {
+            collection: 'regions',
+            via: 'products'
+        }
     },
-    name: 'string',
-    category: {
-      model: 'categories'
-    },
-    tags: {
-      collection: 'tags',
-      via: 'products',
-      dominant: true
-    },
-    seller: {
-      model: 'sellers',
-      required: true
-    },
-    regions: {
-      collection: 'regions',
-      via: 'products',
-      required: true
+
+    beforeCreate: function(product, done) {
+        product.customId = uuidv4();
+
+        return done();
     }
-  }
 };

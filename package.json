@@ -1,58 +1,57 @@
 {
-  "name": "fixted",
-  "version": "2.1.0",
-  "description": "Simple DB Fixtures for Sails.js with associations support. Based on Barrels, by Ruslan Bredikhin",
-  "keywords": [
-    "sails",
-    "fixtures",
-    "testing"
-  ],
-  "dependencies": {
-    "async": "^1.5.0",
-    "lodash": "^3.10.1"
-  },
-  "devDependencies": {
-    "mocha": "^2.3.4",
-    "pre-commit": "1.1.2",
-    "sails": "^0.11.3",
-    "sails-memory": "^0.10.5",
-    "should": "^7.1.1"
-  },
-  "main": "index.js",
-  "scripts": {
-    "test": "NODE_ENV=test mocha -R spec"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/neonexus/fixted.git"
-  },
-  "author": "NeoNexus DeMortis",
-  "contributors": [
-    {
-      "name": "Ruslan Bredikhin",
-      "email": "ruslan.bredikhin@facebook.com"
+    "name": "fixted",
+    "version": "3.0.0",
+    "description": "Simple DB Fixtures for Sails.js with associations support. Based on Barrels, by Ruslan Bredikhin",
+    "keywords": [
+        "sails",
+        "fixtures",
+        "testing"
+    ],
+    "dependencies": {
+        "async": "^1.5.0",
+        "lodash": "^4.17.15"
     },
-    {
-      "name": "Mikael Møller",
-      "email": "mikael@i-dyllen.dk"
+    "devDependencies": {
+        "chai": "^4.2.0",
+        "mocha": "^8.0.1",
+        "pre-commit": "1.1.2",
+        "sails": "^1.2.4",
+        "sails-hook-orm": "^2.1.1",
+        "sails-disk": "^2.1.0",
+        "uuid": "^8.1.0"
     },
-    {
-      "name": "U-Zyn Chua",
-      "email": "chua@uzyn.com"
+    "main": "index.js",
+    "scripts": {
+        "test": "NODE_ENV=test mocha -R spec --ui bdd --timeout 5000"
     },
-    {
-      "name": "Tuomas Salmi"
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/neonexus/fixted.git"
     },
-    {
-      "name": "Victor Heng"
-    },
-    {
-      "name": "Marnus Weststrate",
-      "email": "marnusw@gmail.com"
-    }
-  ],
-  "license": {
-    "type": "MIT",
-    "url": "http://www.opensource.org/licenses/MIT"
-  }
+    "author": "NeoNexus DeMortis",
+    "contributors": [
+        {
+            "name": "Ruslan Bredikhin",
+            "email": "ruslan.bredikhin@facebook.com"
+        },
+        {
+            "name": "Mikael Møller",
+            "email": "mikael@i-dyllen.dk"
+        },
+        {
+            "name": "U-Zyn Chua",
+            "email": "chua@uzyn.com"
+        },
+        {
+            "name": "Tuomas Salmi"
+        },
+        {
+            "name": "Victor Heng"
+        },
+        {
+            "name": "Marnus Weststrate",
+            "email": "marnusw@gmail.com"
+        }
+    ],
+    "license": "MIT"
 }

@@ -3,10 +3,14 @@
  */
 
 module.exports = {
-  attributes: {
-    products: {
-      collection: 'products',
-      via: 'tags'
+    attributes: {
+        id: {
+            type: 'number',
+            autoIncrement: true
+        },
+        products: {
+            collection: 'products',
+            via: 'tags'
+        }
     }
-  }
 };

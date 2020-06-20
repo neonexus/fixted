@@ -1,11 +1,11 @@
 module.exports = [
-  {
-    name: 'Clothes'
-  },
-  {
-    name: "Shoes"
-  },
-  {
-    "name": 'Accessories'
-  }
-]
+    {
+        name: 'Clothes'
+    },
+    {
+        name: 'Shoes'
+    },
+    {
+        'name': 'Accessories'
+    }
+];

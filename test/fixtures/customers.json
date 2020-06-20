@@ -1,10 +1,10 @@
 [
-  {
-    "name": "Walter White",
-    "email": "walter@heisenberg.com"
-  },
-  {
-    "name": "John Appleseed",
-    "email": "appleseed@me.com"
-  }
+    {
+        "name": "Walter White",
+        "email": "walter@heisenberg.com"
+    },
+    {
+        "name": "John Appleseed",
+        "email": "appleseed@me.com"
+    }
 ]
