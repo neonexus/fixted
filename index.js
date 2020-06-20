@@ -17,7 +17,7 @@ module.exports = Fixted;
 
 /**
  * Fixted module
- * @param {string?} sourceFolder - Defaults to <project root>/test/fixtures
+ * @param {string} [sourceFolder] - Defaults to <project root>/test/fixtures
  */
 function Fixted(sourceFolder) {
     if (!(this instanceof Fixted)) {
@@ -51,7 +51,7 @@ function Fixted(sourceFolder) {
 
 /**
  * Add Associations
- * @param {[]|function} collections - Array of models, or callback
+ * @param {string[]|function} collections - Array of models, or callback
  * @param {function} [done] - Callback
  */
 Fixted.prototype.associate = function(collections, done) {
@@ -83,6 +83,8 @@ Fixted.prototype.associate = function(collections, done) {
                         return nextItem(new Error('Could not find the model'));
                     }
 
+                    let shouldUpdate = false;
+
                     // Pick associations only
                     item = _.pick(item, Object.keys(that.associations[modelName]));
 
@@ -95,6 +97,8 @@ Fixted.prototype.associate = function(collections, done) {
                             return;
                         }
 
+                        shouldUpdate = true;
+
                         if (!_.isArray(item[attr])) {
                             model[attr] = that.idMap[joined][item[attr] - 1];
                         } else {
@@ -106,13 +110,18 @@ Fixted.prototype.associate = function(collections, done) {
                         }
                     });
 
-                    Model.updateOne(that.idMap[modelName][itemIndex]).set(model).exec(function(err) {
-                        if (err) {
-                            return nextItem(err);
-                        }
+                    if (shouldUpdate) {
+                        model = JSON.parse(JSON.stringify(model)); // force model to a plain object, or Waterline will not be happy
+                        Model.updateOne(that.idMap[modelName][itemIndex]).set(model).exec(function(err) {
+                            if (err) {
+                                return nextItem(err);
+                            }
 
+                            return nextItem();
+                        });
+                    } else {
                         return nextItem();
-                    });
+                    }
                 });
             }, nextModel);
         } else {
@@ -123,9 +132,9 @@ Fixted.prototype.associate = function(collections, done) {
 
 /**
  * Put loaded fixtures in the database, associations excluded
- * @param {[]} collections - Optional list of collections to populate
- * @param {function} done - Callback
- * @param {boolean} autoAssociations - Automatically associate based on the order in the fixture files
+ * @param {string[]|function} collections - Optional list of collections to populate
+ * @param {function|boolean} [done] - Callback
+ * @param {boolean} [autoAssociations=true] - Automatically associate based on the order in the fixture files
  */
 Fixted.prototype.populate = function(collections, done, autoAssociations) {
     let preserveLoadOrder = true;
@@ -137,7 +146,7 @@ Fixted.prototype.populate = function(collections, done, autoAssociations) {
         collections = this.modelNames;
         preserveLoadOrder = false;
     } else {
-        _.each(collections, function(collection, key) {
+        _.forEach(collections, function(collection, key) {
             collections[key] = collection.toLowerCase();
         });
     }

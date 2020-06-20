@@ -3,7 +3,7 @@
 /**
  * Dependencies
  */
-var should = require('chai').should(); // breaking this up into 2 lines seems to work better for IDE's...
+var should = require('chai').should();
 var Sails = require('sails');
 var Fixted = require('../');
 var fixted = new Fixted();
