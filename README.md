@@ -12,12 +12,14 @@ Drop your fixtures in `test/fixtures` as JSON files (or CommonJS modules) named 
 
 Once your [Sails.js](http://sailsjs.org/) server is started:
 
-    var Fixted = require('fixted');
-    var fixted = new Fixted();
-    var fixtures = fixted.data;
-    fixted.populate(function(err) {
-      ...
-    });
+```javascript
+var Fixted = require('fixted');
+var fixted = new Fixted();
+var fixtures = fixted.data;
+fixted.populate(function(err) {
+    ...
+});
+```
 
 Pass to the constructor the path to the folder containing your fixtures
 (defaults to `./test/fixtures`).
@@ -32,10 +34,12 @@ Pass to the constructor the path to the folder containing your fixtures
 `Populate` also accepts an array of names of collections to populate as
 the first (optional) argument, for example:
 
-    fixted.populate(['products'], function(err) {
-      // Only products will be populated
-      ...
-    });
+```javascript
+fixted.populate(['products'], function(err) {
+    // Only products will be populated
+    ...
+});
+```
 
 ## Automatic association
 
