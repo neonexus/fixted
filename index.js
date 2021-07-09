@@ -2,7 +2,7 @@
 'use strict';
 
 /**
- * Fixted: Simple fixtures for Sails.js
+ * Fixted: Simple fixtures for Sails.js v1, based on Barrels by Ruslan Bredikhin.
  */
 
 /**

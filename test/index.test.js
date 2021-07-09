@@ -3,10 +3,10 @@
 /**
  * Dependencies
  */
-var should = require('chai').should();
-var Sails = require('sails');
-var Fixted = require('../');
-var fixted = new Fixted();
+const should = require('chai').should();
+const Sails = require('sails');
+const Fixted = require('../');
+const fixted = new Fixted();
 
 describe('Fixted', function() {
     const fixtures = fixted.data;
@@ -14,9 +14,9 @@ describe('Fixted', function() {
     // Load fixtures into memory
     describe('constructor', function() {
         it('should load all the json files from default folder', function(done) {
-            Object.keys(fixtures).length.should.be.greaterThan(
-                1,
-                'At least two fixture files should be loaded!'
+            Object.keys(fixtures).length.should.equal(
+                6,
+                'Expected 6 total fixture files'
             );
 
             done();

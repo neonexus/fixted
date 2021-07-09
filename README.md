@@ -1,6 +1,7 @@
 # Simple DB Fixtures for Sails.js with Associations Support
-Fixted is a fork of Barrels, by Ruslan Bredikhin. 
+Fixted is a fork of [Barrels](https://www.npmjs.com/package/barrels), by Ruslan Bredikhin, updated to support Sails v1.
 
+[![npm (fixted)](https://img.shields.io/npm/v/fixted/latest?style=plastic&logo=npm)](https://www.npmjs.com/package/fixted) [![GitHub package.json version (branch)](https://img.shields.io/github/package-json/v/neonexus/fixted/master?style=plastic&logo=github)](https://github.com/neonexus/fixted) [![David](https://img.shields.io/david/neonexus/fixted?style=plastic&logo=nodedotjs)](https://david-dm.org/neonexus/fixted)
 
 ## Installation
 
@@ -10,14 +11,15 @@ Fixted is a fork of Barrels, by Ruslan Bredikhin.
 
 Drop your fixtures in `test/fixtures` as JSON files (or CommonJS modules) named after your models.
 
-Once your [Sails.js](http://sailsjs.org/) server is started:
+Once your [Sails.js](http://sailsjs.org/) server is running:
 
 ```javascript
-var Fixted = require('fixted');
-var fixted = new Fixted();
-var fixtures = fixted.data;
+const Fixted = require('fixted');
+const fixted = new Fixted();
+const fixtures = fixted.data;
+
 fixted.populate(function(err) {
-    ...
+    // do things
 });
 ```
 
@@ -37,7 +39,6 @@ the first (optional) argument, for example:
 ```javascript
 fixted.populate(['products'], function(err) {
     // Only products will be populated
-    ...
 });
 ```
 
@@ -63,11 +64,12 @@ write something like this:
 
 ```javascript
 fixted.populate(['user', 'passport'], function(err) {
-  if (err)
-    return done(err); // Higher level callback
+    if (err) {
+        return done(err); // Higher level callback
+    }
 
-  // Do your thing...
-  done();
+    // Do your thing...
+    done();
 });
 ```
 
