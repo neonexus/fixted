@@ -2,7 +2,7 @@
 'use strict';
 
 /**
- * Fixted: Simple fixtures for Sails.js v1, based on Barrels by Ruslan Bredikhin.
+ * Fixted: A simple way to populate a test database for Sails.js v1.
  */
 
 /**

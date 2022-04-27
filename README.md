@@ -1,7 +1,9 @@
-# Simple DB Fixtures for Sails.js with Associations Support
-Fixted is a fork of [Barrels](https://www.npmjs.com/package/barrels), by Ruslan Bredikhin, updated to support Sails v1.
+# Fixted
+### A simple way to populate [Sails.js](https://sailsjs.com) v1 models with data fixtures.
 
-[![npm (fixted)](https://img.shields.io/npm/v/fixted/latest?style=plastic&logo=npm)](https://www.npmjs.com/package/fixted) [![GitHub package.json version (branch)](https://img.shields.io/github/package-json/v/neonexus/fixted/master?style=plastic&logo=github)](https://github.com/neonexus/fixted) [![David](https://img.shields.io/david/neonexus/fixted?style=plastic&logo=nodedotjs)](https://david-dm.org/neonexus/fixted)
+Fixted is based on [Barrels](https://www.npmjs.com/package/barrels), by Ruslan Bredikhin.
+
+[![npm (fixted)](https://img.shields.io/npm/v/fixted/latest?style=plastic&logo=npm)](https://www.npmjs.com/package/fixted) [![GitHub package.json version (branch)](https://img.shields.io/github/package-json/v/neonexus/fixted/master?style=plastic&logo=github)](https://github.com/neonexus/fixted) [![Build Status](https://img.shields.io/travis/com/neonexus/fixted/master?style=plastic&logo=travis)](https://app.travis-ci.com/neonexus/fixted)
 
 ## Installation
 
@@ -9,7 +11,7 @@ Fixted is a fork of [Barrels](https://www.npmjs.com/package/barrels), by Ruslan 
 
 ## Usage
 
-Drop your fixtures in `test/fixtures` as JSON files (or CommonJS modules) named after your models.
+Drop your fixtures in `test/fixtures` as JSON files (or CommonJS modules) named after your models. See [test/fixtures](test/fixtures) for examples.
 
 Once your [Sails.js](http://sailsjs.org/) server is running:
 
@@ -18,8 +20,10 @@ const Fixted = require('fixted');
 const fixted = new Fixted();
 const fixtures = fixted.data;
 
-fixted.populate(function(err) {
-    // do things
+
+// then we populate our datastore, with automatic accociation support
+fixted.populate((err) => {
+    // perform tests on your models, which should be populated with data
 });
 ```
 
@@ -46,7 +50,7 @@ fixted.populate(['products'], function(err) {
 
 Use the number of position (starting from one) of an entry in the JSON fixture
 as a reference to associate models (see
-https://github.com/neonexus/fixted/blob/master/test/fixtures/products.json
+[test/fixtures/products.json](test/fixtures/products.json)
 for example). This feature can be disabled by passing `false` as the last
 parameter to `populate`.
 

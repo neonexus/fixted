@@ -40,7 +40,7 @@ describe('Fixted', function() {
                 paths: {
                     models: require('path').join(
                         process.cwd(),
-                        'test/fixtures/models'
+                        'test/models'
                     )
                 },
                 datastores: {
