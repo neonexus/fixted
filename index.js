@@ -1,8 +1,13 @@
-/*jslint node: true */
 'use strict';
 
 /**
  * Fixted: A simple way to populate a test database for Sails.js v1.
+ * @module Fixted
+ */
+/**
+ * A function to call once work is finished.
+ * @callback doneCb
+ * @returns void
  */
 
 /**
@@ -13,235 +18,237 @@ const path = require('path');
 const async = require('async');
 const _ = require('lodash');
 
-module.exports = Fixted;
-
-/**
- * Fixted module
- * @param {string} [sourceFolder] - Defaults to <project root>/test/fixtures
- */
-function Fixted(sourceFolder) {
-    if (!(this instanceof Fixted)) {
-        return new Fixted(sourceFolder);
-    }
-
+class Fixted {
     // Fixture objects loaded from the JSON files
-    this.data = {};
+    data = {};
 
     // Map fixture positions in JSON files to the real DB IDs
-    this.idMap = {};
+    idMap = {};
 
     // The list of associations by model
-    this.associations = {};
-
-    // Load the fixtures
-    sourceFolder = sourceFolder || process.cwd() + '/test/fixtures';
-    const files = fs.readdirSync(sourceFolder);
-
-    for (let i = 0; i < files.length; i++) {
-        if (['.json', '.js'].indexOf(path.extname(files[i]).toLowerCase()) !== -1) {
-            const modelName = path.basename(files[i]).split('.')[0].toLowerCase();
-
-            this.data[modelName] = require(path.join(sourceFolder, files[i]));
-        }
-    }
+    associations = {};
 
     // The list of the fixtures model names
-    this.modelNames = Object.keys(this.data);
-}
+    modelNames = [];
 
-/**
- * Add Associations
- * @param {string[]|function} collections - Array of models, or callback
- * @param {function} [done] - Callback
- */
-Fixted.prototype.associate = function(collections, done) {
-    const that = this;
+    /**
+     * Load data fixtures into memory.
+     * @param {string} [sourceFolder=/test/fixtures]
+     * @returns this
+     */
+    constructor(sourceFolder) {
+        // Load the fixtures
+        sourceFolder = sourceFolder || '/test/fixtures';
+        const files = fs.readdirSync(__dirname + sourceFolder);
 
-    if (!_.isArray(collections)) {
-        done = collections;
-        collections = this.modelNames;
-    }
+        for (let i = 0; i < files.length; i++) {
+            if (['.json', '.js'].indexOf(path.extname(files[i]).toLowerCase()) !== -1) {
+                const modelName = path.basename(files[i]).split('.')[0].toLowerCase();
 
-    // Add associations whenever needed
-    async.each(collections, function(modelName, nextModel) {
-        const Model = sails.models[modelName];
-
-        if (Model) {
-            const fixtureObjects = _.cloneDeep(that.data[modelName]);
-
-            async.each(fixtureObjects, function(item, nextItem) {
-                // Item position in the file
-                const itemIndex = fixtureObjects.indexOf(item);
-
-                // Find and associate
-                Model.findOne(that.idMap[modelName][itemIndex]).exec(function(err, model) {
-                    if (err) {
-                        return nextItem(err);
-                    }
-
-                    if (!model) {
-                        return nextItem(new Error('Could not find the model'));
-                    }
-
-                    let shouldUpdate = false;
-
-                    // Pick associations only
-                    item = _.pick(item, Object.keys(that.associations[modelName]));
-
-                    _.forEach(item, function(val, attr) {
-                        const association = that.associations[modelName][attr];
-                        const joined = association[association.type];
-
-                        // Required associations should have been added by .populate()
-                        if (association.required) {
-                            return;
-                        }
-
-                        shouldUpdate = true;
-
-                        if (!_.isArray(item[attr])) {
-                            model[attr] = that.idMap[joined][item[attr] - 1];
-                        } else {
-                            model[attr] = [];
-
-                            for (let j = 0; j < item[attr].length; ++j) {
-                                model[attr].push(that.idMap[joined][item[attr][j] - 1]);
-                            }
-                        }
-                    });
-
-                    if (shouldUpdate) {
-                        model = JSON.parse(JSON.stringify(model)); // force model to a plain object, or Waterline will not be happy
-                        Model.updateOne(that.idMap[modelName][itemIndex]).set(model).exec(function(err) {
-                            if (err) {
-                                return nextItem(err);
-                            }
-
-                            return nextItem();
-                        });
-                    } else {
-                        return nextItem();
-                    }
-                });
-            }, nextModel);
-        } else {
-            nextModel();
+                this.data[modelName] = require(path.join(__dirname, sourceFolder, files[i]));
+            }
         }
-    }, done);
-};
 
-/**
- * Put loaded fixtures in the database, associations excluded
- * @param {string[]|function} collections - Optional list of collections to populate
- * @param {function|boolean} [done] - Callback
- * @param {boolean} [autoAssociations=true] - Automatically associate based on the order in the fixture files
- */
-Fixted.prototype.populate = function(collections, done, autoAssociations) {
-    let preserveLoadOrder = true;
-    const that = this;
+        this.modelNames = Object.keys(this.data);
 
-    if (!_.isArray(collections)) {
-        autoAssociations = done;
-        done = collections;
-        collections = this.modelNames;
-        preserveLoadOrder = false;
-    } else {
-        _.forEach(collections, function(collection, key) {
-            collections[key] = collection.toLowerCase();
-        });
+        return this;
     }
 
-    autoAssociations = !(autoAssociations === false);
+    /**
+     * Build associations for the loaded data fixtures.
+     * @param {string[]|doneCb} collections - Array of model names, or a callback function.
+     * @param {doneCb} [done] - A callback function.
+     * @returns void
+     */
+    associate(collections, done) {
+        if (!Array.isArray(collections)) {
+            done = collections;
+            collections = this.modelNames;
+        }
 
-    // Populate each table / collection
-    async[preserveLoadOrder ? 'eachSeries' : 'each'](collections, function(modelName, nextModel) {
-        let Model = sails.models[modelName];
+        // Add associations whenever needed
+        async.each(collections, (modelName, nextModel) => {
+            const thisModel = sails.models[modelName];
 
-        if (Model) {
-            // Cleanup existing data in the table / collection
-            Model.destroy({}).exec(function(err) {
-                if (err) {
-                    return nextModel(err);
-                }
+            if (thisModel) {
+                const fixtureObjects = _.cloneDeep(this.data[modelName]);
 
-                // Save model's association information
-                that.associations[modelName] = {};
-                for (let i = 0; i < Model.associations.length; ++i) {
-                    const alias = Model.associations[i].alias;
-
-                    that.associations[modelName][alias] = Model.associations[i];
-                    that.associations[modelName][alias].required = Model.attributes[alias].required;
-                }
-
-                // Insert all the fixture items
-                that.idMap[modelName] = [];
-                const fixtureObjects = _.cloneDeep(that.data[modelName]);
-
-                async.eachSeries(fixtureObjects, function(item, nextItem) {
+                async.each(fixtureObjects, (item, nextItem) => {
                     // Item position in the file
                     const itemIndex = fixtureObjects.indexOf(item);
 
-                    for (const alias in that.associations[modelName]) {
-                        if (that.associations[modelName].hasOwnProperty(alias)) {
-                            if (that.associations[modelName][alias].required) {
-                                // With required associations present, the associated fixtures
-                                // must be already loaded, so we can map the ids
-                                const collectionName = that.associations[modelName][alias].collection; // many-to-many
-                                const associatedModelName = that.associations[modelName][alias].model; // one-to-many
-
-                                if (_.isArray(item[alias]) && collectionName) {
-                                    if (!that.idMap[collectionName]) {
-                                        return nextItem(
-                                            new Error('Please provide a loading order acceptable for required associations')
-                                        );
-                                    }
-
-                                    for (let i = 0; i < item[alias].length; i++) {
-                                        item[alias][i] = that.idMap[collectionName][item[alias][i] - 1];
-                                    }
-                                } else if (associatedModelName) {
-                                    if (!that.idMap[associatedModelName]) {
-                                        return nextItem(
-                                            new Error('Please provide a loading order acceptable for required associations')
-                                        );
-                                    }
-
-                                    item[alias] = that.idMap[associatedModelName][item[alias] - 1];
-                                }
-                            } else if (autoAssociations) {
-                                // The order is not important, so we can strip
-                                // associations data and associate later
-                                item = _.omit(item, alias);
-                            }
-                        }
-                    }
-
-                    // Insert
-                    Model.create(item).meta({fetch: true}).exec(function(err, model) {
+                    // Find and associate
+                    thisModel.findOne(this.idMap[modelName][itemIndex]).exec((err, model) => {
                         if (err) {
                             return nextItem(err);
                         }
 
-                        // Primary key mapping
-                        that.idMap[modelName][itemIndex] = model[Model.primaryKey];
+                        if (!model) {
+                            return nextItem(new Error('Could not find the model'));
+                        }
 
-                        nextItem();
+                        let shouldUpdate = false;
+
+                        // Pick associations only
+                        item = _.pick(item, Object.keys(this.associations[modelName]));
+
+                        _.forEach(item, (val, attr) => {
+                            const association = this.associations[modelName][attr];
+                            const joined = association[association.type];
+
+                            // Required associations should have been added by .populate()
+                            if (association.required) {
+                                return;
+                            }
+
+                            shouldUpdate = true;
+
+                            if (!Array.isArray(item[attr])) {
+                                model[attr] = this.idMap[joined][item[attr] - 1];
+                            } else {
+                                model[attr] = [];
+
+                                for (let j = 0; j < item[attr].length; ++j) {
+                                    model[attr].push(this.idMap[joined][item[attr][j] - 1]);
+                                }
+                            }
+                        });
+
+                        if (shouldUpdate) {
+                            model = JSON.parse(JSON.stringify(model)); // force model to a plain object, or Waterline will not be happy
+                            thisModel.updateOne(this.idMap[modelName][itemIndex]).set(model).exec((err) => {
+                                if (err) {
+                                    return nextItem(err);
+                                }
+
+                                return nextItem();
+                            });
+                        } else {
+                            return nextItem();
+                        }
                     });
                 }, nextModel);
-            });
+            } else {
+                nextModel();
+            }
+        }, done);
+    }
+
+    /**
+     * Populate the database with the loaded data fixtures.
+     * @param {string[]|doneCb} collections - An array of model names to populate, in order.
+     * @param {boolean|doneCb} [done] - A callback function.
+     * @param {boolean} [autoAssociations] - Set to `false` to disable auto associations.
+     * @returns void
+     */
+    populate(collections, done, autoAssociations) {
+        let preserveLoadOrder = true;
+
+        if (!Array.isArray(collections)) {
+            autoAssociations = done;
+            done = collections;
+            collections = this.modelNames;
+            preserveLoadOrder = false;
         } else {
-            nextModel();
-        }
-    }, function(err) {
-        if (err) {
-            return done(err);
+            _.forEach(collections, (collection, key) => {
+                collections[key] = collection.toLowerCase();
+            });
         }
 
-        // Create associations if requested
-        if (autoAssociations) {
-            return that.associate(collections, done);
-        }
+        autoAssociations = !(autoAssociations === false); // auto associations are turned on, unless explicitly turned off
 
-        done();
-    });
-};
+        // Populate each table / collection
+        async[preserveLoadOrder ? 'eachSeries' : 'each'](collections, (modelName, nextModel) => {
+            let thisModel = sails.models[modelName];
+
+            if (thisModel) {
+                // Cleanup existing data in the table / collection
+                thisModel.destroy({}).exec((err) => {
+                    if (err) {
+                        return nextModel(err);
+                    }
+
+                    // Save model's association information
+                    this.associations[modelName] = {};
+                    for (let i = 0; i < thisModel.associations.length; ++i) {
+                        const alias = thisModel.associations[i].alias;
+
+                        this.associations[modelName][alias] = thisModel.associations[i];
+                        this.associations[modelName][alias].required = thisModel.attributes[alias].required;
+                    }
+
+                    // Insert all the fixture items
+                    this.idMap[modelName] = [];
+                    const fixtureObjects = _.cloneDeep(this.data[modelName]);
+
+                    async.eachSeries(fixtureObjects, (item, nextItem) => {
+                        // Item position in the file
+                        const itemIndex = fixtureObjects.indexOf(item);
+
+                        for (const alias in this.associations[modelName]) {
+                            if (Object.prototype.hasOwnProperty.call(this.associations[modelName], alias)) {
+                                if (this.associations[modelName][alias].required) {
+                                    // With required associations present, the associated fixtures
+                                    // must be already loaded, so we can map the ids
+                                    const collectionName = this.associations[modelName][alias].collection; // many-to-many
+                                    const associatedModelName = this.associations[modelName][alias].model; // one-to-many
+
+                                    if (Array.isArray(item[alias]) && collectionName) {
+                                        if (!this.idMap[collectionName]) {
+                                            return nextItem(
+                                                new Error('Please provide a loading order acceptable for required associations')
+                                            );
+                                        }
+
+                                        for (let i = 0; i < item[alias].length; i++) {
+                                            item[alias][i] = this.idMap[collectionName][item[alias][i] - 1];
+                                        }
+                                    } else if (associatedModelName) {
+                                        if (!this.idMap[associatedModelName]) {
+                                            return nextItem(
+                                                new Error('Please provide a loading order acceptable for required associations')
+                                            );
+                                        }
+
+                                        item[alias] = this.idMap[associatedModelName][item[alias] - 1];
+                                    }
+                                } else if (autoAssociations) {
+                                    // The order is not important, so we can strip
+                                    // associations data and associate later
+                                    item = _.omit(item, alias);
+                                }
+                            }
+                        }
+
+                        // Insert
+                        thisModel.create(item).meta({fetch: true}).exec((err, model) => {
+                            if (err) {
+                                return nextItem(err);
+                            }
+
+                            // Primary key mapping
+                            this.idMap[modelName][itemIndex] = model[thisModel.primaryKey];
+
+                            nextItem();
+                        });
+                    }, nextModel);
+                });
+            } else {
+                nextModel();
+            }
+        }, (err) => {
+            if (err) {
+                return done(err);
+            }
+
+            // Create associations if requested
+            if (autoAssociations) {
+                return this.associate(collections, done);
+            }
+
+            done();
+        });
+    }
+}
+
+module.exports = Fixted;
