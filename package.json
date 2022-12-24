@@ -1,9 +1,10 @@
 {
     "name": "fixted",
-    "version": "3.0.4",
-    "description": "A simple way to populate Sails.js v1 models with data fixtures. Originally based on Barrels, by Ruslan Bredikhin.",
+    "version": "4.0.1",
+    "description": "A simple way to populate Sails.js v1 models with data fixtures for testing purposes. Originally based on Barrels, by Ruslan Bredikhin.",
     "keywords": [
         "sails",
+        "models",
         "fixtures",
         "testing",
         "database",
@@ -11,21 +12,23 @@
         "waterline"
     ],
     "dependencies": {
-        "async": "^3.2.3",
+        "async": "^3.2.4",
         "lodash": "^4.17.21"
     },
     "devDependencies": {
-        "chai": "^4.3.6",
-        "mocha": "^9.2.2",
+        "chai": "^4.3.7",
+        "eslint": "8.30.0",
+        "mocha": "^10.2.0",
         "pre-commit": "^1.2.2",
-        "sails": "^1.5.2",
-        "sails-hook-orm": "^4.0.1",
-        "sails-disk": "^2.1.1",
-        "uuid": "^8.3.2"
+        "sails": "^1.5.3",
+        "sails-disk": "^2.1.2",
+        "sails-hook-orm": "^4.0.2",
+        "uuid": "^9.0.0"
     },
     "main": "index.js",
     "scripts": {
-        "test": "NODE_ENV=test mocha -R spec --ui bdd --timeout 5000 \"test/**/*.test.js\""
+        "lint": "./node_modules/eslint/bin/eslint.js . --max-warnings=0 --report-unused-disable-directives && echo '✔  Your .js files look good.'",
+        "test": "npm run lint && NODE_ENV=test mocha -R spec --ui bdd --timeout 5000 \"test/**/*.test.js\" && echo '✔ Done ✔\n'"
     },
     "pre-commit": [
         "test"
@@ -64,6 +67,6 @@
     ],
     "license": "MIT",
     "engines": {
-        "node": ">=16.14"
+        "node": ">=18.12"
     }
 }

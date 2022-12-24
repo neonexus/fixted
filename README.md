@@ -1,7 +1,9 @@
 # Fixted
-### A simple way to populate [Sails.js](https://sailsjs.com) v1 models with data fixtures.
+### A simple way to populate [Sails.js](https://sailsjs.com) v1 models with data fixtures for testing purposes.
 
 Fixted is based on [Barrels](https://www.npmjs.com/package/barrels), by Ruslan Bredikhin.
+
+For an example of real-world use, see this: https://github.com/neonexus/sails-react-bootstrap-webpack
 
 [![npm (fixted)](https://img.shields.io/npm/v/fixted/latest?style=plastic&logo=npm)](https://www.npmjs.com/package/fixted) [![GitHub package.json version (branch)](https://img.shields.io/github/package-json/v/neonexus/fixted/master?style=plastic&logo=github)](https://github.com/neonexus/fixted) [![Build Status](https://img.shields.io/travis/com/neonexus/fixted/master?style=plastic&logo=travis)](https://app.travis-ci.com/neonexus/fixted)
 
@@ -19,7 +21,6 @@ Once your [Sails.js](http://sailsjs.org/) server is running:
 const Fixted = require('fixted');
 const fixted = new Fixted();
 const fixtures = fixted.data;
-
 
 // then we populate our datastore, with automatic accociation support
 fixted.populate((err) => {
