@@ -3,6 +3,7 @@
 /**
  * Dependencies
  */
+/* eslint-disable-next-line */
 const should = require('chai').should();
 const Sails = require('sails');
 const Fixted = require('../');
@@ -14,20 +15,14 @@ describe('Fixted', function() {
     // Load fixtures into memory
     describe('constructor', function() {
         it('should load all the json files from default folder', function(done) {
-            Object.keys(fixtures).length.should.equal(
-                6,
-                'Expected 6 total fixture files'
-            );
+            Object.keys(fixtures).length.should.equal(6, 'Expected 6 total fixture files');
 
             done();
         });
 
-        it('should set generate lowercase property names for models', function(done) {
+        it('should generate lowercase property names for models', function(done) {
             const oneWord = Object.keys(fixtures).join();
-            oneWord.toLowerCase().should.be.eql(
-                oneWord,
-                'Property names should be in lowercase!'
-            );
+            oneWord.toLowerCase().should.be.eql(oneWord, 'Property names should be in lowercase!');
 
             done();
         });
@@ -38,10 +33,7 @@ describe('Fixted', function() {
         before(function(done) {
             Sails.lift({
                 paths: {
-                    models: require('path').join(
-                        process.cwd(),
-                        'test/models'
-                    )
+                    models: require('path').join(process.cwd(), 'test/models')
                 },
                 datastores: {
                     default: {
