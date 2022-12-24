@@ -1,6 +1,6 @@
 # Changelog
 
-## [v4.0.0](https://github.com/neonexus/fixted/compare/v3.0.4...v4.0.0) (2022-12-24)
+## [v4.0.1](https://github.com/neonexus/fixted/compare/v3.0.4...v4.0.1) (2022-12-24)
 
 ### Features
 

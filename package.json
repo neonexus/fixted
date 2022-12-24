@@ -1,6 +1,6 @@
 {
     "name": "fixted",
-    "version": "4.0.0",
+    "version": "4.0.1",
     "description": "A simple way to populate Sails.js v1 models with data fixtures for testing purposes. Originally based on Barrels, by Ruslan Bredikhin.",
     "keywords": [
         "sails",
