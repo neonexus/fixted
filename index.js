@@ -38,14 +38,14 @@ class Fixted {
      */
     constructor(sourceFolder) {
         // Load the fixtures
-        sourceFolder = sourceFolder || '/test/fixtures';
-        const files = fs.readdirSync(__dirname + sourceFolder);
+        sourceFolder = sourceFolder || process.cwd() + '/test/fixtures';
+        const files = fs.readdirSync(sourceFolder);
 
         for (let i = 0; i < files.length; i++) {
             if (['.json', '.js'].indexOf(path.extname(files[i]).toLowerCase()) !== -1) {
                 const modelName = path.basename(files[i]).split('.')[0].toLowerCase();
 
-                this.data[modelName] = require(path.join(__dirname, sourceFolder, files[i]));
+                this.data[modelName] = require(path.join(sourceFolder, files[i]));
             }
         }
 
