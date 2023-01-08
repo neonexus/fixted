@@ -3,7 +3,7 @@
 
 Fixted is based on [Barrels](https://www.npmjs.com/package/barrels), by Ruslan Bredikhin.
 
-For an example of real-world use, see this: https://github.com/neonexus/sails-react-bootstrap-webpack
+For an example of real-world use, see this: https://github.com/neonexus/sails-react-bootstrap-webpack/tree/release/test
 
 [![npm (fixted)](https://img.shields.io/npm/v/fixted/latest?style=plastic&logo=npm)](https://www.npmjs.com/package/fixted) [![GitHub package.json version (branch)](https://img.shields.io/github/package-json/v/neonexus/fixted/master?style=plastic&logo=github)](https://github.com/neonexus/fixted) [![Build Status](https://img.shields.io/travis/com/neonexus/fixted/master?style=plastic&logo=travis)](https://app.travis-ci.com/neonexus/fixted)
 
