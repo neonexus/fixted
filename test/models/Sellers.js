@@ -2,7 +2,7 @@
  * Sellers
  */
 
-const { v4: uuidv4 } = require('uuid');
+const crypto = require('crypto');
 
 module.exports = {
     attributes: {
@@ -16,7 +16,7 @@ module.exports = {
     },
 
     beforeCreate: function(seller, done) {
-        seller.id = uuidv4();
+        seller.id = crypto.randomUUID();
 
         return done();
     }

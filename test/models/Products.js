@@ -2,7 +2,7 @@
  * Products
  */
 
-const { v4: uuidv4 } = require('uuid');
+const crypto = require('crypto');
 
 module.exports = {
     primaryKey: 'customId',
@@ -34,7 +34,7 @@ module.exports = {
     },
 
     beforeCreate: function(product, done) {
-        product.customId = uuidv4();
+        product.customId = crypto.randomUUID();
 
         return done();
     }
