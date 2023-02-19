@@ -2,10 +2,12 @@
 
 /**
  * Fixted: A simple way to populate a test database for Sails.js v1.
+ *
  * @module Fixted
  */
 /**
  * A function to call once work is finished.
+ *
  * @callback doneCb
  * @returns void
  */
@@ -16,7 +18,7 @@
 const fs = require('fs');
 const path = require('path');
 const async = require('async');
-const _ = require('lodash');
+const {cloneDeep, forEach, omit, pick} = require('lodash');
 
 class Fixted {
     // Fixture objects loaded from the JSON files
@@ -33,6 +35,7 @@ class Fixted {
 
     /**
      * Load data fixtures into memory.
+     *
      * @param {string} [sourceFolder=/test/fixtures]
      * @returns this
      */
@@ -56,6 +59,7 @@ class Fixted {
 
     /**
      * Build associations for the loaded data fixtures.
+     *
      * @param {string[]|doneCb} collections - Array of model names, or a callback function.
      * @param {doneCb} [done] - A callback function.
      * @returns void
@@ -71,7 +75,7 @@ class Fixted {
             const thisModel = sails.models[modelName];
 
             if (thisModel) {
-                const fixtureObjects = _.cloneDeep(this.data[modelName]);
+                const fixtureObjects = cloneDeep(this.data[modelName]);
 
                 async.each(fixtureObjects, (item, nextItem) => {
                     // Item position in the file
@@ -90,9 +94,9 @@ class Fixted {
                         let shouldUpdate = false;
 
                         // Pick associations only
-                        item = _.pick(item, Object.keys(this.associations[modelName]));
+                        item = pick(item, Object.keys(this.associations[modelName]));
 
-                        _.forEach(item, (val, attr) => {
+                        forEach(item, (val, attr) => {
                             const association = this.associations[modelName][attr];
                             const joined = association[association.type];
 
@@ -136,6 +140,7 @@ class Fixted {
 
     /**
      * Populate the database with the loaded data fixtures.
+     *
      * @param {string[]|doneCb} collections - An array of model names to populate, in order.
      * @param {boolean|doneCb} [done] - A callback function.
      * @param {boolean} [autoAssociations] - Set to `false` to disable auto associations.
@@ -150,7 +155,7 @@ class Fixted {
             collections = this.modelNames;
             preserveLoadOrder = false;
         } else {
-            _.forEach(collections, (collection, key) => {
+            forEach(collections, (collection, key) => {
                 collections[key] = collection.toLowerCase();
             });
         }
@@ -179,7 +184,7 @@ class Fixted {
 
                     // Insert all the fixture items
                     this.idMap[modelName] = [];
-                    const fixtureObjects = _.cloneDeep(this.data[modelName]);
+                    const fixtureObjects = cloneDeep(this.data[modelName]);
 
                     async.eachSeries(fixtureObjects, (item, nextItem) => {
                         // Item position in the file
@@ -215,7 +220,7 @@ class Fixted {
                                 } else if (autoAssociations) {
                                     // The order is not important, so we can strip
                                     // associations data and associate later
-                                    item = _.omit(item, alias);
+                                    item = omit(item, alias);
                                 }
                             }
                         }
