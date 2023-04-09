@@ -1,6 +1,6 @@
 {
     "name": "fixted",
-    "version": "4.1.0",
+    "version": "4.2.0",
     "description": "A simple way to populate Sails.js v1 models with data fixtures for testing purposes. Originally based on Barrels, by Ruslan Bredikhin.",
     "keywords": [
         "sails",
@@ -17,12 +17,15 @@
     },
     "devDependencies": {
         "chai": "~4.3.7",
-        "eslint": "~8.34.0",
+        "eslint": "~8.38.0",
         "mocha": "~10.2.0",
         "pre-commit": "~1.2.2",
         "sails": "~1.5.4",
         "sails-disk": "~2.1.2",
         "sails-hook-orm": "~4.0.2"
+    },
+    "peerDependencies": {
+        "sails": "1.x"
     },
     "funding": [
         {
@@ -33,9 +36,10 @@
     "main": "index.js",
     "scripts": {
         "lint": "./node_modules/eslint/bin/eslint.js . --max-warnings=0 --report-unused-disable-directives && echo '✔  Your .js files look good.'",
-        "test": "npm run lint && NODE_ENV=test mocha -R spec --ui bdd --timeout 5000 \"test/**/*.test.js\" && echo '✔ Done ✔\n'"
+        "test": "npm run lint && NODE_ENV=test PORT=1338 mocha -R spec --ui bdd --timeout 5000 \"test/**/*.test.js\" && echo '✔ Done ✔\n'"
     },
     "pre-commit": [
+        "lint",
         "test"
     ],
     "repository": {
@@ -72,6 +76,6 @@
     ],
     "license": "MIT",
     "engines": {
-        "node": ">=18.14"
+        "node": ">=18.15"
     }
 }
