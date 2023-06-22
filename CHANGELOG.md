@@ -1,4 +1,10 @@
 # Changelog
+## [v4.2.1](https://github.com/neonexus/fixted/compare/v4.2.0...v4.2.1) (2023-06-15)
+
+### Features
+
+* Updated ESLint to v8.43.0.
+* Minor README update.
 
 ## [v4.2.0](https://github.com/neonexus/fixted/compare/v4.1.0...v4.2.0) (2023-04-08)
 
