@@ -1,6 +1,6 @@
 {
     "name": "fixted",
-    "version": "4.2.1",
+    "version": "4.2.2",
     "description": "A simple way to populate Sails.js v1 models with data fixtures for testing purposes. Originally based on Barrels, by Ruslan Bredikhin.",
     "keywords": [
         "sails",
@@ -16,11 +16,11 @@
         "lodash": "~4.17.21"
     },
     "devDependencies": {
-        "chai": "~4.3.7",
-        "eslint": "~8.43.0",
+        "chai": "~4.3.10",
+        "eslint": "~8.50.0",
         "mocha": "~10.2.0",
         "pre-commit": "~1.2.2",
-        "sails": "~1.5.4",
+        "sails": "~1.5.8",
         "sails-disk": "~2.1.2",
         "sails-hook-orm": "~4.0.2"
     },

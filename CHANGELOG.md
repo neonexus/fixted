@@ -1,4 +1,10 @@
 # Changelog
+## [v4.2.2](https://github.com/neonexus/fixted/compare/v4.2.1...v4.2.2) (2023-10-03)
+
+### Features
+
+* Updated dependencies.
+
 ## [v4.2.1](https://github.com/neonexus/fixted/compare/v4.2.0...v4.2.1) (2023-06-15)
 
 ### Features
