@@ -3,13 +3,21 @@
 
 Fixted is based on [Barrels](https://www.npmjs.com/package/barrels), by Ruslan Bredikhin.
 
-For an example of real-world use, see this: https://github.com/neonexus/sails-react-bootstrap-webpack/blob/release/test/startTests.js#L145
-
-[![npm](https://img.shields.io/npm/dm/fixted?logo=npm&style=plastic)](https://www.npmjs.com/package/fixted) [![Build Status](https://img.shields.io/travis/com/neonexus/fixted/master?style=plastic&logo=travis)](https://app.travis-ci.com/neonexus/fixted) [![npm (fixted)](https://img.shields.io/npm/v/fixted/latest?style=plastic&logo=npm)](https://www.npmjs.com/package/fixted) [![GitHub package.json version (branch)](https://img.shields.io/github/package-json/v/neonexus/fixted/master?style=plastic&logo=github)](https://github.com/neonexus/fixted)
+[![npm](https://img.shields.io/npm/dm/fixted?logo=npm&style=plastic)](https://www.npmjs.com/package/fixted)
+[![Build Status](https://img.shields.io/travis/com/neonexus/fixted/master?style=plastic&logo=travis)](https://app.travis-ci.com/neonexus/fixted)
+[![NPM version](https://img.shields.io/npm/v/fixted/latest?style=plastic&logo=npm&label=latest)](https://www.npmjs.com/package/fixted)
+[![GitHub version](https://img.shields.io/github/v/release/neonexus/fixted?style=plastic&logo=github&label=latest)](https://github.com/neonexus/fixted)
+[<img src="mit.svg" width="95" height="18">](LICENSE)
 
 ## Installation
 
-`npm i --save-dev fixted`
+```console
+npm i --save-dev fixted
+```
+
+## Real-World Usage Example
+
+See [neonexus/sails-react-bootstrap-webpack](https://github.com/neonexus/sails-react-bootstrap-webpack/blob/release/test/startTests.js#L145) for an example of automated tests that depend on fake data.
 
 ## Usage
 

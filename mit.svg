@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-label="license: MIT" viewBox="0 0 95 18">
+    <linearGradient id="b" x2="0" y2="100%">
+        <stop offset="0" stop-color="#fff" stop-opacity=".7"/>
+        <stop offset=".1" stop-color="#aaa" stop-opacity=".1"/>
+        <stop offset=".9" stop-opacity=".3"/>
+        <stop offset="1" stop-opacity=".5"/>
+    </linearGradient>
+    <clipPath id="a">
+        <rect width="95" height="18" fill="#fff" rx="4"/>
+    </clipPath>
+    <g clip-path="url(#a)">
+        <path fill="#555" d="M0 0h64v18H0z"/>
+        <path fill="#fe7d37" d="M64 0h31v18H64z"/>
+        <path fill="url(#b)" d="M0 0h95v18H0z"/>
+    </g>
+    <g fill="#fff" font-family="Verdana,Geneva,DejaVu Sans,sans-serif" font-size="110" text-anchor="middle" text-rendering="geometricPrecision">
+        <image
+            xlink:href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0MCA0MCIgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIiBmaWxsPSJ3aGl0ZSI+PHBhdGggZD0iTTE5LjggNS4zYy0uMSAwLS4yLjItLjMuOEwxOSA3LjVhMiAyIDAgMCAwIDAgMmwuMS40di40bC0uMy42di40aC0uM2MtMSAuMS0xLjkuMy0yLjguN2ExMS42IDExLjYgMCAwIDAtMy4zIDEuOSA4IDggMCAwIDEtMi4yIDEuM2MtLjQuMi0uNC4yLS40IDBhMSAxIDAgMCAwLS40LS41SDljLS4yIDAtLjQgMC0uNi4ybC0uMi41YzAgLjMgMCAuNS4zLjZsLjEuMi0uMS4yTDYuOCAyMCA2IDIxLjdsLTEuNCAzLS44IDEuN2gtLjJ2LjJjLjMuMy45LjkgMS4yIDFhNiA2IDAgMCAwIDMgMS4xaDIuNmMxLjUtLjIgMi44LS43IDMuNi0xLjVsLjctLjhoLS4xYTQwNjYuOSA0MDY2LjkgMCAwIDEtMy45LTcuOGwtMS4xLTIuNGguM2MxLS4yIDEuOS0uNiAzLjItMS41bC44LS41YTEwLjUgMTAuNSAwIDAgMSA0LjgtMS42di41Yy4xIDEgLjMgMS45LjYgMi44bC4xLjN2LjdhMTQuMiAxNC4yIDAgMCAxIDAgMS43djEuMWwtLjEuNnYuNWExNS4xIDE1LjEgMCAwIDAtLjEgMS4yIDEyLjYgMTIuNiAwIDAgMCAwIDEuMyA1NC4yIDU0LjIgMCAwIDAtLjIgNS4zbC0uMSAxYTYgNiAwIDAgMC0uMiAyLjF2MWgtMi4yYTEgMSAwIDAgMC0uNC41bC0uMS4xaC0uNGMtLjYgMC0uOC4xLTEuMS41bC0uMy4yYy0uMiAwLS40LjEtLjUuM2wtLjYuNC0uNC4xLS4zLjRoMTUuMmMwLS4yLS4zLS40LS43LS41LS4zIDAtLjMtLjEtLjUtLjRhMSAxIDAgMCAwLS43LS40aC0uMmExIDEgMCAwIDAtLjQtLjVIMjR2LS4xYTEgMSAwIDAgMC0uNC0uNWgtMi4zdi0xLjFsLS4xLTItLjItMS4xdi0uM2ExIDEgMCAwIDAgMC0xYy0uMi0uMS0uMi0uMi0uMS0uNHYtMy41YTEzLjIgMTMuMiAwIDAgMS0uMS0xLjMgMTAuNyAxMC43IDAgMCAxIDAtMS4yIDExLjQgMTEuNCAwIDAgMS0uMS0xLjEgMTEuNCAxMS40IDAgMCAxIDAtMS4yIDcuOCA3LjggMCAwIDEtLjItMXYtMS4yYy4xLS4xLjEtLjEgMC0uMmE5LjMgOS4zIDAgMCAwIC44LTMuM3YtLjNhMTAuNSAxMC41IDAgMCAxIDQgMS4xbDEgLjUgMSAuN2E3IDcgMCAwIDAgMy4xIDEuM2wtMS44IDMuOS0yLjUgNS0uNiAxLjNoLS4ybC4xLjIuNS41YTYgNiAwIDAgMCAzLjcgMS42aDIuNmMxLjUtLjIgMi44LS43IDMuNi0xLjZsLjUtLjUuMS0uMmgtLjJsLS42LTEuNC0yLjYtNS0xLjctNGguMWMuNC0uNC40LS45IDAtMS4yYS41LjUgMCAwIDAtLjUtLjNsLS40LjFjLS4yLjEtLjQuMy0uNC42aC0uNWwtMi0xLjRjLTEtLjctMS4zLS45LTItMS4yYTkuNyA5LjcgMCAwIDAtNC4yLTEuM2gtLjJWMTFsLS40LS44di0uNWwuMy0uN3YtLjZsLS4yLTEtLjMtMS4xLS4zLS45LS4zLS4yaC0uMlptLTEwLjYgMTB2LjNIOXYtLjJsLjEtLjFoLjFabTIxLjggMHYuM2gtLjJ2LS4zaC4yWm0tMjIgMXYxMEg0bC4yLS40LjgtMS42IDIuMy00LjZBMjk2LjcgMjk2LjcgMCAwIDEgOSAxNi4yWm0yMi41LjljLjggMS40IDQuNCA5IDQuNCA5bC4xLjJoLTV2LTVhMjUxLjcgMjUxLjcgMCAwIDEgMC01LjJsLjUgMVptLTIxLjcgMCAyLjIgNC41IDIgNCAuMi43aC01VjE2LjJsLjYgMVptMjEgNC4xdjVoLTVsLjItLjQuNS0xIDIuMS00LjUgMi4xLTQuMXY1Wm0wIDAiLz48L3N2Zz4="
+            width="20" height="20" x="2" y="-1"
+        />
+        <text x="415" y="140" fill="#010101" fill-opacity=".3" aria-hidden="true" textLength="370" transform="scale(.1)">license</text>
+        <text x="415" y="130" textLength="370" transform="scale(.1)">license</text>
+        <text x="785" y="140" fill="#010101" fill-opacity=".3" aria-hidden="true" textLength="210" transform="scale(.1)">MIT</text>
+        <text x="785" y="130" textLength="210" transform="scale(.1)">MIT</text>
+    </g>
+</svg>
