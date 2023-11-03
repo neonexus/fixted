@@ -1,6 +1,6 @@
 {
     "name": "fixted",
-    "version": "4.2.2",
+    "version": "4.2.3",
     "description": "A simple way to populate Sails.js v1 models with data fixtures for testing purposes. Originally based on Barrels, by Ruslan Bredikhin.",
     "keywords": [
         "sails",
@@ -9,7 +9,9 @@
         "testing",
         "database",
         "orm",
-        "waterline"
+        "waterline",
+        "fake",
+        "data"
     ],
     "dependencies": {
         "async": "~3.2.4",
@@ -17,7 +19,7 @@
     },
     "devDependencies": {
         "chai": "~4.3.10",
-        "eslint": "~8.50.0",
+        "eslint": "~8.52.0",
         "mocha": "~10.2.0",
         "pre-commit": "~1.2.2",
         "sails": "~1.5.8",
@@ -27,6 +29,9 @@
     "peerDependencies": {
         "sails": "1.x"
     },
+    "files": [
+        "index.js"
+    ],
     "funding": [
         {
             "type": "github",
