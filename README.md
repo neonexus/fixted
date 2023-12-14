@@ -17,7 +17,7 @@ npm i --save-dev fixted
 
 ## Real-World Usage Example
 
-See [neonexus/sails-react-bootstrap-webpack](https://github.com/neonexus/sails-react-bootstrap-webpack/blob/release/test/startTests.js#L145) for an example of automated tests that depend on fake data.
+See [neonexus/sails-react-bootstrap-webpack](https://github.com/neonexus/sails-react-bootstrap-webpack/blob/release/test/startTests.js#L153) for an example of automated tests that depend on fake data.
 
 ## Usage
 
