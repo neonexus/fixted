@@ -1,6 +1,6 @@
 {
     "name": "fixted",
-    "version": "4.2.3",
+    "version": "4.2.4",
     "description": "A simple way to populate Sails.js v1 models with data fixtures for testing purposes. Originally based on Barrels, by Ruslan Bredikhin.",
     "keywords": [
         "sails",
@@ -14,12 +14,12 @@
         "data"
     ],
     "dependencies": {
-        "async": "~3.2.4",
+        "async": "~3.2.5",
         "lodash": "~4.17.21"
     },
     "devDependencies": {
         "chai": "~4.3.10",
-        "eslint": "~8.52.0",
+        "eslint": "~8.55.0",
         "mocha": "~10.2.0",
         "pre-commit": "~1.2.2",
         "sails": "~1.5.8",
@@ -44,13 +44,13 @@
         "test": "npm run lint && NODE_ENV=test PORT=1338 mocha -R spec --ui bdd --timeout 5000 \"test/**/*.test.js\" && echo '✔ Done ✔\n'"
     },
     "pre-commit": [
-        "lint",
         "test"
     ],
     "repository": {
         "type": "git",
-        "url": "git://github.com/neonexus/fixted.git"
+        "url": "https://github.com/neonexus/fixted.git"
     },
+    "homepage": "https://github.com/neonexus/fixted",
     "author": {
         "name": "NeoNexus DeMortis",
         "email": "neonexus.demortis@gmail.com"
@@ -81,6 +81,6 @@
     ],
     "license": "MIT",
     "engines": {
-        "node": ">=18.15"
+        "node": ">=20.10"
     }
 }
