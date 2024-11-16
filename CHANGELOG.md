@@ -1,5 +1,16 @@
 # Changelog
 
+## [v4.2.7](https://github.com/neonexus/fixted/compare/v4.2.6...v4.2.7) (2024-11-16)
+### Features
+
+* Updated dependencies.
+* Fixed NPM audit issue.
+
+## [v4.2.6](https://github.com/neonexus/fixted/compare/v4.2.5...v4.2.6) (2024-05-24)
+### Features
+
+* Updated Sails.
+
 ## [v4.2.5](https://github.com/neonexus/fixted/compare/v4.2.4...v4.2.5) (2024-04-22)
 ### Features
 
